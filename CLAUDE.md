@@ -12,8 +12,8 @@
 - **목적**: 학생들이 각자의 이름으로 만들 GitHub Pages 포트폴리오의 레퍼런스 제공
 - **주인공**: 가상 캐릭터 **장미래 (Chang Mirae)** — 오일러전자 EOS 프로젝트를 이끄는 오리지널 페르소나
 - **배포**: GitHub Pages (정적 사이트)
-- **URL**: `https://changmirae.github.io/`
-- **리포지토리**: `changmirae/changmirae.github.io` (GitHub User Page 규칙)
+- **URL**: `https://miraeitm.github.io/`
+- **리포지토리**: `miraeitm/miraeitm.github.io` (GitHub User Page 규칙)
 
 ---
 
@@ -26,7 +26,7 @@
 | **이름** | 장미래 (Chang Mirae) |
 | **나이** | 28세 (2026년 기준) |
 | **이메일** | miraeitm@gmail.com |
-| **GitHub** | [@changmirae](https://github.com/changmirae) |
+| **GitHub** | [@miraeitm](https://github.com/miraeitm) |
 | **소속 1** | 오일러전자 개발부서 / 과장 |
 | **소속 2** | KAIST 기술경영전문대학원(I&TM) 석사과정 2년차 |
 | **취미** | 러닝 (주 3회, 서울 한강·남산 코스 선호) |
@@ -68,7 +68,7 @@
 ## 4. 파일 구조
 
 ```
-changmirae.github.io/
+miraeitm.github.io/
 ├── index.html                      # 메인 포트폴리오 페이지
 ├── README.md                       # 리포 설명 (방문자용)
 ├── CLAUDE.md                       # 이 파일 (Claude 작업 지침)
@@ -112,7 +112,7 @@ changmirae.github.io/
 4. **Research Projects** — 6개 웹앱 카드 그리드 (I&TM 코어 5개 + 법 분석 1개)
 5. **AI Bot Collections** — 존경하는 학자 AI 봇 쇼케이스 카드 그리드
 6. **Personal Dashboard** — 라이프로그 4개 페이지 카드 (러닝, 독서, 식단, 포트폴리오)
-7. **Contact** — 이메일(`miraeitm@gmail.com`), GitHub(`@changmirae`), LinkedIn
+7. **Contact** — 이메일(`miraeitm@gmail.com`), GitHub(`@miraeitm`), LinkedIn
 
 ---
 
@@ -342,11 +342,11 @@ changmirae.github.io/
 ## 13. GitHub Pages 배포 절차
 
 ### 13.1 초기 설정
-1. `miraeitm@gmail.com`으로 GitHub 계정 생성 (사용자명: `changmirae`)
-2. `changmirae.github.io` 이름의 **Public 리포지토리** 생성
+1. `miraeitm@gmail.com`으로 GitHub 계정 생성 (사용자명: `miraeitm`)
+2. `miraeitm.github.io` 이름의 **Public 리포지토리** 생성
 3. `main` 브랜치에 `index.html` 푸시
 4. Settings → Pages → Source: `main` branch, `/` (root) 선택
-5. 몇 분 후 `https://changmirae.github.io/`에서 접근 가능
+5. 몇 분 후 `https://miraeitm.github.io/`에서 접근 가능
 
 ### 13.2 새 페이지 추가 절차
 1. `/projects/[이름]/`, `/bots/[이름]/`, 또는 `/life/[이름]/` 폴더 생성
