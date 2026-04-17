@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>백마탄 | Baek Ma-tan — Agent AI OS Researcher</title>
+  <meta name="description" content="가우스전자 개발부서 × KAIST I&TM. 에이전트 AI OS 생태계와 플랫폼 전략을 연구하는 백마탄의 포트폴리오.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===========================================================
+       Baek Ma-tan Portfolio — Cool-tone Blue Minimalist
+       Palette (CLAUDE.md §9.1)
+       =========================================================== */
+    :root {
+      --primary:        #1E40AF;
+      --secondary:      #3B82F6;
+      --accent:         #60A5FA;
+      --bg:             #F8FAFC;
+      --bg-elev:        #FFFFFF;
+      --bg-soft:        #EFF4FB;
+      --text-primary:   #0F172A;
+      --text-secondary: #475569;
+      --border:         #E2E8F0;
+      --shadow-sm:      0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-md:      0 4px 12px rgba(15, 23, 42, 0.06);
+      --shadow-lg:      0 12px 32px rgba(15, 23, 42, 0.08);
+      --radius-sm:      6px;
+      --radius-md:      10px;
+      --radius-lg:      16px;
+      --max-width:      1120px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: var(--primary); text-decoration: none; transition: color .15s ease; }
+    a:hover { color: var(--secondary); }
+
+    h1, h2, h3, h4 { color: var(--text-primary); line-height: 1.25; margin: 0 0 .5em; font-weight: 600; }
+    h1 { font-size: clamp(2.25rem, 5vw, 3.75rem); font-weight: 700; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(1.75rem, 3.5vw, 2.25rem); letter-spacing: -0.01em; }
+    h3 { font-size: 1.125rem; }
+    p  { margin: 0 0 1em; color: var(--text-secondary); }
+
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+    /* ----------  Navigation  ---------- */
+    header.site-nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(248, 250, 252, 0.85);
+      backdrop-filter: saturate(180%) blur(10px);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-brand {
+      font-weight: 700; font-size: 1rem; color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+    .nav-brand span { color: var(--primary); }
+    .nav-links { display: flex; gap: 28px; list-style: none; padding: 0; margin: 0; }
+    .nav-links a {
+      font-size: 0.9rem; font-weight: 500;
+      color: var(--text-secondary);
+    }
+    .nav-links a:hover { color: var(--primary); }
+    @media (max-width: 720px) { .nav-links { display: none; } }
+
+    /* ----------  Section base  ---------- */
+    section { padding: 96px 0; }
+    section + section { border-top: 1px solid var(--border); }
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 12px;
+    }
+    .section-heading { margin-bottom: 12px; }
+    .section-sub    { max-width: 720px; margin-bottom: 48px; color: var(--text-secondary); }
+
+    /* ----------  Hero  ---------- */
+    .hero { padding: 120px 0 96px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 12px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      border-radius: 999px;
+      font-size: 0.8rem; font-weight: 500;
+      margin-bottom: 20px;
+    }
+    .hero-tag::before {
+      content: ""; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--secondary);
+    }
+    .hero h1 { margin-bottom: 16px; }
+    .hero .lead {
+      font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      max-width: 560px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      font-weight: 500; font-size: 0.95rem;
+      transition: all .15s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--secondary); color: #fff; }
+    .btn-secondary {
+      background: var(--bg-elev); color: var(--primary);
+      border-color: var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--secondary); }
+
+    /* Hero illustration — placeholder avatar */
+    .hero-avatar {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      max-width: 360px;
+      margin-left: auto;
+      border-radius: var(--radius-lg);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(96, 165, 250, 0.35), transparent 60%),
+        linear-gradient(135deg, #DCE8FB 0%, #B7CDF7 100%);
+      box-shadow: var(--shadow-lg);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .hero-avatar svg { width: 72%; height: 72%; }
+    @media (max-width: 860px) { .hero-avatar { margin: 0 auto; } }
+
+    /* ----------  About  ---------- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 56px;
+    }
+    @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+    .about-card {
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+    .about-card dl { margin: 0; display: grid; gap: 14px; }
+    .about-card dt {
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-secondary); margin-bottom: 2px;
+    }
+    .about-card dd { margin: 0; color: var(--text-primary); font-weight: 500; }
+    .about-text p { color: var(--text-secondary); }
+    .about-text p:last-child { margin-bottom: 0; }
+
+    /* ----------  Research Interests  ---------- */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .interest-card {
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      box-shadow: var(--shadow-sm);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .interest-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .interest-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--bg-soft);
+      color: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .interest-icon svg { width: 22px; height: 22px; }
+    .interest-card h3 { margin-bottom: 8px; font-size: 1.05rem; }
+    .interest-card p  { margin: 0; font-size: 0.93rem; }
+
+    /* ----------  Card grids (Projects / Bots / Life)  ---------- */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      position: relative;
+      display: flex; flex-direction: column;
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent);
+    }
+    .card-media {
+      aspect-ratio: 16 / 9;
+      background:
+        linear-gradient(135deg, var(--bg-soft) 0%, #DCE8FB 100%);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary);
+      font-weight: 600; letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .card-media::after {
+      content: "Placeholder";
+      position: absolute;
+      top: 12px; right: 12px;
+      font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.75);
+      padding: 3px 8px; border-radius: 999px;
+      font-weight: 500;
+    }
+    .card-media svg { width: 42%; height: 42%; opacity: 0.85; }
+    .card-body { padding: 22px 22px 24px; display: flex; flex-direction: column; flex-grow: 1; }
+    .card-meta {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 8px;
+    }
+    .card-title { font-size: 1.05rem; margin-bottom: 6px; }
+    .card-desc { font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 16px; }
+    .card-footer {
+      margin-top: auto; display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.85rem; color: var(--text-secondary);
+    }
+    .card-link {
+      color: var(--primary); font-weight: 500;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .card-link[aria-disabled="true"] {
+      color: var(--text-secondary);
+      pointer-events: none; cursor: not-allowed;
+    }
+    .card-badge {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-secondary);
+      background: var(--bg-soft);
+      padding: 3px 8px; border-radius: 999px;
+    }
+
+    /* ----------  Contact  ---------- */
+    .contact-inner {
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: center;
+    }
+    @media (max-width: 720px) {
+      .contact-inner { grid-template-columns: 1fr; padding: 32px; }
+    }
+    .contact-channels { display: flex; flex-direction: column; gap: 10px; min-width: 240px; }
+    .contact-channel {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: var(--text-primary); font-weight: 500;
+    }
+    .contact-channel svg { width: 18px; height: 18px; color: var(--primary); }
+    .contact-channel:hover { color: var(--primary); }
+
+    /* ----------  Footer  ---------- */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0 40px;
+      background: var(--bg);
+    }
+    .footer-inner {
+      display: flex; flex-wrap: wrap; justify-content: space-between;
+      gap: 12px; align-items: center;
+      font-size: 0.85rem; color: var(--text-secondary);
+    }
+    .footer-inner a { color: var(--text-secondary); }
+    .footer-inner a:hover { color: var(--primary); }
+
+    /* ----------  Utilities  ---------- */
+    .text-accent { color: var(--primary); }
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =============== NAV =============== -->
+  <header class="site-nav">
+    <div class="container nav-inner">
+      <a href="#top" class="nav-brand">백마탄<span>.</span></a>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#interests">Interests</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#bots">AI Bots</a></li>
+          <li><a href="#life">Life</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- =============== 1. HERO =============== -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container hero-grid">
+        <div>
+          <span class="hero-tag">Agent AI OS · Platform Strategy · Innovation Theory</span>
+          <h1 id="hero-heading">
+            AI 시대의 새로운 OS를<br>
+            고민하는 <span class="text-accent">실무자 겸 연구자</span>.
+          </h1>
+          <p class="lead">
+            안녕하세요, <strong>백마탄</strong>입니다. 가우스전자 개발부서에서
+            에이전트 AI OS(Agent AI OS) 플랫폼 전략을 고민하고,
+            KAIST 기술경영전문대학원(I&amp;TM)에서 혁신이론(Innovation Theory)을 연구합니다.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">연구 프로젝트 보기</a>
+            <a href="#contact" class="btn btn-secondary">Contact</a>
+          </div>
+        </div>
+
+        <div class="hero-avatar" aria-hidden="true">
+          <!-- Minimal silhouette illustration: the signature "horn-like" front hair -->
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="gh" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#1E40AF"/>
+                <stop offset="100%" stop-color="#3B82F6"/>
+              </linearGradient>
+            </defs>
+            <!-- Shoulders -->
+            <path d="M30 190 Q30 140 100 140 Q170 140 170 190 Z" fill="url(#gh)"/>
+            <!-- Head -->
+            <circle cx="100" cy="95" r="42" fill="#DBEAFE"/>
+            <!-- Signature hair (horn-like front) -->
+            <path d="M60 70 Q72 30 96 52 Q104 30 120 48 Q130 40 140 70 Q140 80 100 78 Q70 80 60 70 Z"
+                  fill="#1E40AF"/>
+            <!-- Collar accent -->
+            <path d="M60 150 L100 170 L140 150 L140 160 L100 178 L60 160 Z" fill="#60A5FA"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== 2. ABOUT =============== -->
+    <section id="about" aria-labelledby="about-heading">
+      <div class="container">
+        <span class="section-label">About</span>
+        <h2 id="about-heading" class="section-heading">소개</h2>
+        <p class="section-sub">
+          제 이력과 현재 연구 방향을 간략히 소개합니다.
+        </p>
+
+        <div class="about-grid">
+          <div class="about-card" aria-label="프로필 요약">
+            <dl>
+              <div>
+                <dt>이름</dt>
+                <dd>백마탄 (Baek Ma-tan)</dd>
+              </div>
+              <div>
+                <dt>소속 1</dt>
+                <dd>가우스전자 개발부서</dd>
+              </div>
+              <div>
+                <dt>소속 2</dt>
+                <dd>KAIST 기술경영전문대학원(I&amp;TM) 석사과정 2년차</dd>
+              </div>
+              <div>
+                <dt>담당 프로젝트</dt>
+                <dd>가보스 프로젝트 (Gaboss Project) — 에이전트 AI OS</dd>
+              </div>
+              <div>
+                <dt>취미</dt>
+                <dd>러닝 · 데이터 기반 자기관리</dd>
+              </div>
+              <div>
+                <dt>이메일</dt>
+                <dd><a href="mailto:matanbaek@gmail.com">matanbaek@gmail.com</a></dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="about-text">
+            <p>
+              저는 가우스전자 개발부서에서 <strong>에이전트 AI OS(Agent AI OS)</strong>
+              플랫폼 전략을 맡고 있습니다. 모든 사람이 AI 에이전트를 통해 컴퓨터를 사용하는 시대,
+              전통적 OS가 아니라 AI가 중심이 되어 사용자의 의도를 이해하고 앱·데이터·디바이스를
+              조율하는 차세대 컴퓨팅 플랫폼이 부상하고 있다고 봅니다.
+            </p>
+            <p>
+              현재 사내에서 기획·추진 중인 <strong>가보스 프로젝트(Gaboss Project)</strong>는
+              글로벌 빅테크의 에이전트 AI 플랫폼에 대응해,
+              한국이 주도하는 에이전트 AI OS 생태계와 표준을 구축하는 것을 목표로 합니다.
+            </p>
+            <p>
+              KAIST I&amp;TM에서는 이 문제의식을 학술적으로 확장해,
+              플랫폼 경쟁, 지배적 디자인(Dominant Design), 혁신 확산(Diffusion of Innovations),
+              전유성 프레임워크(Appropriability Regime)를 AI 산업에 적용하는
+              데이터 기반 연구를 수행하고 있습니다.
+            </p>
+            <p>
+              업무와 연구 외에는 러닝을 즐깁니다. 서울 한강과 남산을 주로 달리며,
+              식단과 투자 포트폴리오를 AI에 위탁하는 실험을 통해 <strong>AI 시대의
+              개인 자기관리</strong>가 어떻게 달라질 수 있는지 꾸준히 기록하고 있습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== 3. RESEARCH INTERESTS =============== -->
+    <section id="interests" aria-labelledby="interests-heading">
+      <div class="container">
+        <span class="section-label">Research Interests</span>
+        <h2 id="interests-heading" class="section-heading">관심 영역</h2>
+        <p class="section-sub">
+          AI 에이전트가 새로운 컴퓨팅 인터페이스로 자리잡는 과정에서 나타나는
+          플랫폼 경쟁·생태계 형성·혁신 확산을 중점적으로 살펴봅니다.
+        </p>
+
+        <div class="interests-grid">
+          <article class="interest-card">
+            <div class="interest-icon" aria-hidden="true">
+              <!-- Layers icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                <polyline points="2 17 12 22 22 17"/>
+                <polyline points="2 12 12 17 22 12"/>
+              </svg>
+            </div>
+            <h3>에이전트 AI OS 생태계</h3>
+            <p>
+              Agent AI OS Ecosystem &amp; Platform Strategy — 차세대 컴퓨팅 플랫폼의
+              경쟁 구도와 보완 자산 구조를 분석합니다.
+            </p>
+          </article>
+
+          <article class="interest-card">
+            <div class="interest-icon" aria-hidden="true">
+              <!-- Award / standard icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="6"/>
+                <polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/>
+              </svg>
+            </div>
+            <h3>지배적 디자인과 AI 표준</h3>
+            <p>
+              Dominant Design &amp; AI Standards Battle — AI 시대의 표준 형성과
+              기술 궤적(Technological Trajectory)을 탐구합니다.
+            </p>
+          </article>
+
+          <article class="interest-card">
+            <div class="interest-icon" aria-hidden="true">
+              <!-- Trending / diffusion icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                <polyline points="17 6 23 6 23 12"/>
+              </svg>
+            </div>
+            <h3>혁신 확산과 데이터 분석</h3>
+            <p>
+              Diffusion of Innovations &amp; Data-Driven Analysis — Rogers(2003)의
+              채택자 범주를 국내 AI 서비스에 적용해 확산 패턴을 실증합니다.
+            </p>
+          </article>
+
+          <article class="interest-card">
+            <div class="interest-icon" aria-hidden="true">
+              <!-- Shield / appropriability icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3>전유성 프레임워크의 AI 적용</h3>
+            <p>
+              Appropriability Regime in AI — Teece(1986)의 전유성 개념으로
+              AI 산업의 가치 포획 구조를 해석합니다.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== 4. RESEARCH PROJECTS =============== -->
+    <section id="projects" aria-labelledby="projects-heading">
+      <div class="container">
+        <span class="section-label">Research Projects</span>
+        <h2 id="projects-heading" class="section-heading">연구 프로젝트</h2>
+        <p class="section-sub">
+          KAIST I&amp;TM 코어 수업 5개와 연계한 데이터 분석 웹앱 5개,
+          그리고 IP 법 쟁점을 분석한 사례 연구 1개. 각 프로젝트는 약 2,000건 규모 표본을
+          다루며 인터랙티브 시각화로 제공될 예정입니다.
+        </p>
+
+        <div class="card-grid" id="projects-grid">
+          <!-- Cards populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== 5. AI BOT COLLECTIONS =============== -->
+    <section id="bots" aria-labelledby="bots-heading">
+      <div class="container">
+        <span class="section-label">AI Bot Collections</span>
+        <h2 id="bots-heading" class="section-heading">존경하는 학자 AI 봇</h2>
+        <p class="section-sub">
+          AI OS 연구 여정에서 대화 상대로 삼고 싶은 네 명의 학자를 AI 페르소나 봇으로
+          구현한 쇼케이스. 기술·조직·인간·사고 네 축을 커버합니다.
+        </p>
+
+        <div class="card-grid" id="bots-grid">
+          <!-- Cards populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== 6. PERSONAL DASHBOARD =============== -->
+    <section id="life" aria-labelledby="life-heading">
+      <div class="container">
+        <span class="section-label">Personal Dashboard</span>
+        <h2 id="life-heading" class="section-heading">개인 라이프로그</h2>
+        <p class="section-sub">
+          일상을 데이터 기반으로 관리합니다. 러닝·독서·식단·포트폴리오 네 영역의
+          라이프로그를 공개합니다. <em>(모두 시범용 모의 데이터입니다.)</em>
+        </p>
+
+        <div class="card-grid" id="life-grid">
+          <!-- Cards populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== 7. CONTACT =============== -->
+    <section id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <span class="section-label">Contact</span>
+        <h2 id="contact-heading" class="section-heading">연락 및 협업</h2>
+        <p class="section-sub">
+          연구 협업, 기술 교류, 커리어 관련 논의 모두 환영합니다.
+        </p>
+
+        <div class="contact-inner">
+          <div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 8px;">함께 이야기 나눠요.</h3>
+            <p style="margin: 0;">
+              에이전트 AI OS, 플랫폼 전략, 혁신 확산 연구와 관련된 어떤 주제든 편하게 연락 주세요.
+            </p>
+          </div>
+          <div class="contact-channels">
+            <a class="contact-channel" href="mailto:matanbaek@gmail.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 6-10 7L2 6"/>
+              </svg>
+              matanbaek@gmail.com
+            </a>
+            <a class="contact-channel" href="https://github.com/matanbaek" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.47.1-3.06 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.82 0c2.22-1.49 3.2-1.18 3.2-1.18.62 1.59.23 2.77.11 3.06.75.81 1.2 1.84 1.2 3.1 0 4.43-2.7 5.4-5.28 5.69.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/>
+              </svg>
+              github.com/matanbaek
+            </a>
+            <a class="contact-channel" href="https://linkedin.com" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.26 2.37 4.26 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.46c.98 0 1.77-.78 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/>
+              </svg>
+              LinkedIn <span style="color: var(--text-secondary); font-weight: 400; font-size: .85rem;">(준비 중)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =============== FOOTER =============== -->
+  <footer>
+    <div class="container footer-inner">
+      <span>&copy; 2026 백마탄 (Baek Ma-tan). KAIST I&amp;TM Claude 특강 시범 포트폴리오.</span>
+      <span>Hosted on <a href="https://github.com/matanbaek/matanbaek.github.io" target="_blank" rel="noopener">GitHub Pages</a></span>
+    </div>
+  </footer>
+
+  <!-- =============== DATA + RENDER =============== -->
+  <script>
+    // ----- Research projects (CLAUDE.md §6) -----
+    const projects = [
+      {
+        meta: "ITM675 · 기업가치와벤처투자의 실제",
+        title: "AI 스타트업 투자 네트워크",
+        titleEn: "AI Startup Investment Network",
+        desc: "혁신의숲·TheVC 공개 데이터로 국내 AI 스타트업 펀딩 이벤트 약 2,000건을 네트워크·히트맵·타임라인으로 시각화.",
+        slug: "ai-startup-network",
+        badge: "Network"
+      },
+      {
+        meta: "ITM560 · 혁신조직과 리더십",
+        title: "IT 채용 공고 AI 스킬 수요",
+        titleEn: "IT Job Posting AI Skills",
+        desc: "사람인·원티드 최근 24개월 공고 약 2,000건에서 AI 스킬 키워드 변화를 워드클라우드·박스플롯·동반출현 네트워크로 추적.",
+        slug: "ai-job-skills",
+        badge: "Text Mining"
+      },
+      {
+        meta: "ITM660 · 하이테크 전략적 혁신경영",
+        title: "국내 AI·에이전트 특허 경쟁 지형",
+        titleEn: "AI &amp; Agent Patent Landscape",
+        desc: "KIPRIS 공개 API로 수집한 AI·에이전트 특허 약 2,000건을 선버스트·트리맵·시계열로 시각화하여 전유성 구조 분석.",
+        slug: "ai-patent-landscape",
+        badge: "Patents"
+      },
+      {
+        meta: "ITM622 · 가치혁신",
+        title: "한국 AI 서비스 앱 리뷰 감성",
+        titleEn: "AI App Sentiment",
+        desc: "구글 플레이스토어 주요 AI 앱 리뷰 약 2,000건을 수집해 감성 시계열·이슈 토픽 클러스터로 사용자 수용 패턴 분석.",
+        slug: "ai-app-sentiment",
+        badge: "Sentiment"
+      },
+      {
+        meta: "ITM501 · 이노베이션경영",
+        title: "네이버 데이터랩 AI 검색 확산",
+        titleEn: "AI Search Diffusion",
+        desc: "네이버 데이터랩 오픈 API 약 2,000 시점 데이터를 지역 choropleth·연령 스트림그래프·상관 행렬로 분석한 확산 연구.",
+        slug: "ai-search-diffusion",
+        badge: "Diffusion"
+      },
+      {
+        meta: "지적재산권법 개론",
+        title: "NYT vs OpenAI 저작권 분쟁",
+        titleEn: "Copyright Case Study",
+        desc: "생성형 AI 학습 데이터 쟁점을 다룬 NYT vs OpenAI 사건을 타임라인·Fair Use 체크리스트·유사 판례 비교로 정리한 법 분석.",
+        slug: "ai-copyright-case",
+        badge: "IP / Law"
+      }
+    ];
+
+    // ----- AI bots (CLAUDE.md §7) -----
+    const bots = [
+      {
+        meta: "기술경영",
+        title: "Clayton Christensen",
+        titleKr: "클레이튼 크리스텐슨",
+        desc: "파괴적 혁신과 혁신가의 딜레마. AI OS 플랫폼 전략에서 존속적 혁신의 함정을 짚어주는 파트너.",
+        slug: "christensen",
+        badge: "Disruption"
+      },
+      {
+        meta: "정치철학 · 인문학",
+        title: "Hannah Arendt",
+        titleKr: "한나 아렌트",
+        desc: "악의 평범성과 기술 시대의 인간 조건. AI 기술 결정의 윤리적 측면을 성찰하는 대화 파트너.",
+        slug: "arendt",
+        badge: "Ethics"
+      },
+      {
+        meta: "행동경제학 · 심리학",
+        title: "Daniel Kahneman",
+        titleKr: "대니얼 카너먼",
+        desc: "시스템 1·2 사고와 판단 편향. 투자·제품 의사결정에서 나의 편향을 점검하도록 돕는 파트너.",
+        slug: "kahneman",
+        badge: "Cognition"
+      },
+      {
+        meta: "조직심리학",
+        title: "Adam Grant",
+        titleKr: "애덤 그랜트",
+        desc: "기브 앤 테이크와 조직문화. 팀 내 협업·리더십 고민을 조직심리학 관점에서 상담하는 파트너.",
+        slug: "grant",
+        badge: "Org Psych"
+      }
+    ];
+
+    // ----- Personal dashboard (CLAUDE.md §8) -----
+    const life = [
+      {
+        meta: "Running Log",
+        title: "러닝 기록",
+        titleEn: "Running Log",
+        desc: "한강·남산 중심 러닝 경로, 주별 거리·페이스, 누적 거리 카운터. Leaflet 기반 지도 시각화.",
+        slug: "running",
+        badge: "Leaflet"
+      },
+      {
+        meta: "Reading Log",
+        title: "독서 기록",
+        titleEn: "Reading Log",
+        desc: "최근 읽은 책 표지 그리드, 평점·장르 필터, 월별 독서량 차트. 짧은 감상 메모 포함.",
+        slug: "reading",
+        badge: "Books"
+      },
+      {
+        meta: "AI-Managed Nutrition",
+        title: "AI 식단 관리",
+        titleEn: "AI-Managed Nutrition",
+        desc: "건강 관리를 AI에 위탁한 식단 설계. 주간 식단표·영양소 레이더·AI 추천 대화 로그 공개.",
+        slug: "meals",
+        badge: "Nutrition"
+      },
+      {
+        meta: "AI-Managed Portfolio",
+        title: "AI 포트폴리오 관리",
+        titleEn: "AI-Managed Portfolio",
+        desc: "투자 포트폴리오를 AI에 위탁한 실험. 자산 배분 도넛·월별 수익률·리밸런싱 이력 공개.",
+        slug: "portfolio",
+        badge: "Finance"
+      }
+    ];
+
+    // Placeholder media SVG (simple geometric glyph)
+    function mediaGlyph() {
+      return `
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"
+             fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="32" cy="32" r="20" opacity="0.45"/>
+          <circle cx="32" cy="32" r="10"/>
+          <path d="M32 12v8M32 44v8M12 32h8M44 32h8"/>
+        </svg>`;
+    }
+
+    function renderCard(item, basePath) {
+      const isDisabled = true; // Section pages not yet built
+      const linkLabel = isDisabled ? "준비 중" : "자세히 보기";
+      const href = `${basePath}/${item.slug}/`;
+      const secondaryTitle = item.titleEn || item.titleKr || "";
+      return `
+        <article class="card">
+          <div class="card-media" aria-hidden="true">${mediaGlyph()}</div>
+          <div class="card-body">
+            <div class="card-meta">${item.meta}</div>
+            <h3 class="card-title">${item.title}</h3>
+            ${secondaryTitle ? `<div style="font-size:.8rem; color: var(--text-secondary); margin-bottom: 8px;">${secondaryTitle}</div>` : ""}
+            <p class="card-desc">${item.desc}</p>
+            <div class="card-footer">
+              <span class="card-badge">${item.badge}</span>
+              <a class="card-link" href="${href}" aria-disabled="${isDisabled}" tabindex="${isDisabled ? -1 : 0}">
+                ${linkLabel} →
+              </a>
+            </div>
+          </div>
+        </article>`;
+    }
+
+    document.getElementById("projects-grid").innerHTML =
+      projects.map(p => renderCard(p, "projects")).join("");
+    document.getElementById("bots-grid").innerHTML =
+      bots.map(b => renderCard(b, "bots")).join("");
+    document.getElementById("life-grid").innerHTML =
+      life.map(l => renderCard(l, "life")).join("");
+  </script>
+
+</body>
+</html>
